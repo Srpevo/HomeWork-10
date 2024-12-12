@@ -80,6 +80,31 @@ namespace HomeWork_10
             }
         }
 
+         private bool IsTextBoxEmpty(TextBox textBox)
+         {
+             return string.IsNullOrEmpty(textBox.Text);
+         }
+
+         private bool CheckInputField(ObjectType type = ObjectType.None)
+         {
+             bool isEmpty = IsTextBoxEmpty(zerroTextBox)
+                            || IsTextBoxEmpty(firstTextBox)
+                            || IsTextBoxEmpty(secondTextBox);
+        
+             if (type != ObjectType.University)
+             {
+                 isEmpty |= IsTextBoxEmpty(thirdTextBox);
+             }
+        
+             if (isEmpty)
+             {
+                 MessageBox.Show("Not all fields are filled in!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                 return true;
+             }
+        
+             return false;
+         }
+                
         private bool CheckData(out int value_1, out int value_2, ObjectType type)
         {
             bool hasError = false;
@@ -117,6 +142,7 @@ namespace HomeWork_10
 
         private void CreateObject(ObjectType type)
         {
+            if (CheckInputField(_currentObjType)) return;
             if (CheckData(out int id, out int value2, type)) return;
 
             switch (type)
