@@ -15,9 +15,6 @@ namespace HomeWork_10.Utils.Validators.EmailValidator
             if (string.IsNullOrWhiteSpace(email))
                 return false;
 
-            int at_counter = email.Count(x => x == '@');
-            int dot_counter = email.Count(x => x == '.');
-
             var Regx = new Regex(@"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"); //using regular expression for more realism ;)
 
             if (!Regx.IsMatch(email))
